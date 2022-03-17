@@ -28,3 +28,4 @@ D:\Download\ПП02\proga_pp02\pp02\pp02\obj\Debug\pp02.csproj.CopyComplete
 D:\Download\ПП02\proga_pp02\pp02\pp02\obj\Debug\MVVM\View\CreatePageView.g.cs
 D:\Download\ПП02\proga_pp02\pp02\pp02\obj\Debug\MVVM\View\CreatePageView.baml
 D:\Download\ПП02\proga_pp02\pp02\pp02\obj\Debug\Themes\ComboBoxTheme.baml
+D:\Download\ПП02\proga_pp02\pp02\pp02\obj\Debug\Themes\SearchField.baml

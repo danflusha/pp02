@@ -13,8 +13,10 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
                 <TextBox Width="250" Height="35" 
                            Margin="0,0,10,0"
-                           Background="#04a0ff"
-                           Text="{Binding SearchCommand}"/>
+                           FontSize="20"
+                           Tag="Поиск"
+                           Text="{Binding SearchField, UpdateSourceTrigger=PropertyChanged}"
+                           Style="{StaticResource placeHolder}"/>
                 <ComboBox Width="200" Height="35" 
                           Margin="0,0,10,0"
                           Style="{StaticResource ComboBoxFlatStyle}">

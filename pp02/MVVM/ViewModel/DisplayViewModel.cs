@@ -23,19 +23,26 @@ namespace pp02.MVVM.ViewModel
         public string SearchField
         {
             get { return searchField; }
-            set { searchField = value; OnPropertyChanged("SearchField");}
+            set { searchField = value; OnPropertyChanged("SearchField");
+            Service = new ObservableCollection<Service>(TemplateContext.GetContext().Service.Where(Service => Service.Title.Contains(SearchField)).ToList());
+            }
         }
+
         public CreatePageViewModel CreatePageVM { get; set; }
         public RelayCommand CreatePageCommand { get; set; }
         public RelayCommand EditCommand { get; set; }
         public RelayCommand SearchCommand { get; set; }
         public RelayCommand DeleteCommand { get; set; }
+
         public event EventHandler CreatePageEventHandler;
+        public event EventHandler PropertyChanged;
         public DisplayViewModel()
         {
             Service = new ObservableCollection<Service>(TemplateContext.GetContext().Service.ToList());
 
             CreatePageVM = new CreatePageViewModel();
+
+            PropertyChanged += DisplayViewModel_PropertyChanged;
 
             CreatePageCommand = new RelayCommand(o =>
             {
@@ -60,11 +67,11 @@ namespace pp02.MVVM.ViewModel
                     TemplateContext.GetContext().SaveChanges();
                 }
             });
+        }
 
-            SearchCommand = new RelayCommand(o =>
-            {
-                Service = new ObservableCollection<Service>(TemplateContext.GetContext().Service.Where(Service => Service.Title.Contains(SearchField)).ToList());
-            });
+        private void DisplayViewModel_PropertyChanged(object sender, EventArgs e)
+        {
+            Service = new ObservableCollection<Service>(TemplateContext.GetContext().Service.Where(Service => Service.Title.Contains(SearchField)).ToList());
         }
 
         private void CreatePageVM_refreshView(Service service)
