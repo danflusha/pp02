@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="pp02.MVVM.View.CreatePageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:pp02.MVVM.View" 
+             xmlns:viewmodel="clr-namespace:pp02.MVVM.ViewModel" 
+             d:DataContext="{d:DesignInstance Type=viewmodel:CreatePageViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="900">
+    <Border Height="600" Width="750"
+            Background="#e7fabf"
+            CornerRadius="0">
+        
+        <StackPanel Orientation="Vertical">
+            <Button Height="35" Width="120"
+                    FontSize="20"
+                    Content="Назад"
+                    Background="#04a0ff"
+                    HorizontalAlignment="Left"
+                    Command="{Binding DisplayPageViewCommand}"
+                    Margin="25,25,0,0"/>
+
+            <TextBlock Text="{Binding ViewName}" Margin="0,15,0,0" FontSize="18" HorizontalAlignment="Center"/>
+
+            <StackPanel HorizontalAlignment="Center" Margin="0,30,0,0">
+
+                <StackPanel Orientation="Vertical" Width="350">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Название" FontSize="24" Margin="0,0,10,0" HorizontalAlignment="Center"/>
+                        <TextBox Text="{Binding TitleName}" Height="40" Width="200" HorizontalAlignment="Center" Background="#04a0ff" FontSize="22"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Стоимость" FontSize="24" Margin="0,5,10,0" HorizontalAlignment="Center"/>
+                        <TextBox Text="{Binding CostPredmeta}" Height="40" Width="200" Background="#04a0ff" FontSize="22"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Время" FontSize="24" Margin="0,5,10,0" HorizontalAlignment="Center"/>
+                        <TextBox Text="{Binding TimePredmeta}" Height="40" Width="200" Background="#04a0ff" FontSize="22"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Скидка" FontSize="24" Margin="0,5,10,0" HorizontalAlignment="Center"/>
+                        <TextBox Text="{Binding DiscountPredmeta}" Height="40" Width="200" Background="#04a0ff" FontSize="22"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,0,0,0">
+                        <TextBlock Text="Описание" FontSize="24" Margin="0,5,10,0" HorizontalAlignment="Center"/>
+                        <TextBox Text="{Binding DescriptionPredmeta}" Height="40" Width="200" Background="#04a0ff" FontSize="22"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Button Content="Сохранить"
+                                Margin="0,35,0,0"
+                                Width="250" Height="40"
+                                Background="#04a0ff" 
+                                FontSize="20"
+                                Command="{Binding AddCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

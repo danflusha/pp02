@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="pp02.MVVM.View.DisplayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:pp02.MVVM.View"
+             xmlns:viewmodel="clr-namespace:pp02.MVVM.ViewModel" xmlns:conv="clr-namespace:pp02.Core"
+             d:DataContext="{d:DesignInstance Type=viewmodel:DisplayViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="900">
+    <StackPanel>
+        <StackPanel Height="735" Margin="0,10,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                <TextBox Width="250" Height="35" 
+                           Margin="0,0,10,0"
+                           Background="#04a0ff"
+                           Text="{Binding SearchCommand}"/>
+                <ComboBox Width="200" Height="35" 
+                          Margin="0,0,10,0"
+                          Style="{StaticResource ComboBoxFlatStyle}">
+                    <TextBlock Text="По убыванию цены"/>
+                    <TextBlock Text="По возрастанию цены"/>
+                </ComboBox>
+                <ComboBox Width="200" Height="35" 
+                          Margin="10,0,0,0"
+                          Style="{StaticResource ComboBoxFlatStyle}">
+                    <TextBlock Text="Все"/>
+                    <TextBlock Text="Скидка от 0 до 5"/>
+                    <TextBlock Text="Скидка от 5 до 15"/>
+                    <TextBlock Text="Скидка от 15 до 30"/>
+                    <TextBlock Text="Скидка от 30 до 70"/>
+                    <TextBlock Text="Скидка от 70 до 100"/>
+                </ComboBox>
+            </StackPanel>
+            <ListView Height="570"
+                      FontSize="17"
+                      Background="Transparent"
+                      Width="800"
+                      Name="servicesListView"
+                      BorderThickness="0"
+                      ItemsSource="{Binding Service}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#e7fabf"
+                                Width="770"
+                                CornerRadius="15">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding MainImagePath}"
+                                       Width="160" 
+                                       Height="110"
+                                       VerticalAlignment="Center"
+                                       Margin="15,0,25,0"/>
+                                <StackPanel Orientation="Vertical" Margin="0,5,0,15">
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                        <TextBlock Text="{Binding Title}"
+                                                            Margin="0 0 0 0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Cost, StringFormat={}{0:0} рублей за }"/>
+                                        <TextBlock Text="{Binding DurationInSeconds, StringFormat={} {0} минут}"
+                                                   Margin=" 0 0 0 5"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Discount, StringFormat={} скидка: {0}}"
+                                                   Margin=" 0 0 0 0">
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                        <Button Height="30" Width="160"
+                                                Content="Редактировать" 
+                                                Background="#04a0ff"
+                                                Margin="0,0,5,0"
+                                                Command="{Binding ElementName=servicesListView, Path=DataContext.EditCommand}"
+                                                CommandParameter="{Binding}"/>
+                                        <Button Height="30" Width="120"
+                                                Content="Удалить" 
+                                                Background="#04a0ff"
+                                                Command="{Binding ElementName=servicesListView, Path=DataContext.DeleteCommand}" 
+                                                CommandParameter="{Binding}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Height="35" Width="250"
+                    Margin="0,5,0,0"
+                    Content="Добавить запись"
+                    Background="#04a0ff"
+                    Command="{Binding CreatePageCommand}"/>
+        </StackPanel>
+    </StackPanel>
+
+</UserControl> 
